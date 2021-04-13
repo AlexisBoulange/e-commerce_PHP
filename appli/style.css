@@ -9,3 +9,6 @@ body{
 td{
     border: 1px solid black;
 }
+.panier{
+    text-align: right;
+}
