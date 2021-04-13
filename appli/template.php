@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,12 +34,29 @@
                 </form>
             </div>
         </div>
+        
     </nav>
     </header>
 
+    <div class=" container panier">
+        <?php
+        if(!isset($_SESSION['products']) || empty($_SESSION['products'])){
+            echo "<p>Aucun produit en session...</p>";
+        }else{
+            foreach($_SESSION['products'] as $index => $product){
+                echo "<tr>",
+                        "<td>".$product['name']." </td>",
+                        "<td>" . $product['qtt'] . "<a href='addOne.php?ajout=" . $index . "'> Ajouter </a><a href='minusOne.php?moins=" . $index . "'> Enlever </a> <a href='deleteOne.php?retrait=".$index."'>Supprimer</a> </td>",
+                    "</tr><br/>";
+            }
+        }?>
+        <a href="deleteAll.php">Vider le panier</a>
+    </div>
     <div class="container contenu">
     <?= $contenu ?>
+    
     </div>
+
 
     <footer class="footer mt-auto py-3 bg-light">
         <div class="container">
