@@ -33,6 +33,7 @@
                     "<tbody>";
             $totalGeneral = 0;
             foreach($_SESSION['products'] as $index => $product){
+                $total = $product['price']*$product['qtt'];
                 echo "<tr>",
                         "<td>".$index."</td>",
                         "<td>".$product['name']."</td>",
@@ -40,9 +41,11 @@
                         //number_format permet de modifier l'affichage tel que : $var à modifier, nb de décimales, char séparateur décimal et le char séparateur de milliers
                         "<td>".number_format($product['price'], 2, ",", "&nbsp;")."&nbsp;€</td>",
                         "<td>".$product['qtt']."</td>",
-                        "<td>".number_format($product['total'], 2, ",", "&nbsp;")."&nbsp;€</td>",
+                        "<td>".number_format($total, 2, ",", "&nbsp;")."&nbsp;€</td>",
+                        "<td><a href='addOne.php?ajout=" . $index . "'> Ajouter </a><a href='minusOne.php?moins=" . $index . "'> Enlever </a> <a href='deleteOne.php?retrait=".$index."'>Supprimer</a></td>",
                     "</tr>";
-                $totalGeneral+= $product['total'];
+                $totalGeneral+= $total;
+                
             }
             echo "<tr>",
                     "<td colspan=4>Total général : </td>",
